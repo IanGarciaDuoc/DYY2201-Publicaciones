@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import org.springframework.http.MediaType;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -52,7 +53,7 @@ public class PublicacionControllerTest {
         given(publicacionService.GetAll()).willReturn(List.of(new Publicacion()));
         mockMvc.perform(MockMvcRequestBuilders.get("/publicaciones"))
                .andExpect(status().isOk())
-               .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+               .andExpect(content().contentType(MediaType.valueOf("application/hal+json")));  // Cambiado a application/hal+json
     }
 
     // Test para obtener una publicación por su ID
